@@ -1,0 +1,44 @@
+import dependencia.*
+import rodados.*
+
+describe "test rodados" {
+  const deportes = new Dependencia(empleados=45)
+  const cultura = new  Dependencia(empleados=31)
+  const cachito = new  Corsa(color="rojo")
+
+  method initialize(){
+      deportes.agregarAFlota(cachito)
+      deportes.agregarAFlota(new Corsa(color="azul"))
+      deportes.agregarAFlota(new Corsa(color="verde"))
+      deportes.agregarAFlota(new Kwid(tieneTanqueAdicional=true))
+      deportes.agregarAFlota(new Especial(capacidad=5, velocidadMaxima=160, peso=1200, color="beige"))
+      cultura.agregarAFlota(cachito)
+      cultura.agregarAFlota(new Kwid(tieneTanqueAdicional=true))
+      cultura.agregarAFlota(new Kwid(tieneTanqueAdicional=true))
+      cultura.agregarAFlota(new Kwid(tieneTanqueAdicional=false))
+      cultura.agregarAFlota(trafic)
+      trafic.interior(popular)
+      trafic.motor(bataton)
+  }
+
+  test "deportes tiene un peso total de 6450" {
+    assert.equals(6450, deportes.pesoTotalFlota())
+  }
+
+  test "cultura tiene peso total de 10700"{
+    assert.equals(10700, cultura.pesoTotalFlota())
+  }
+  test "deportes esta bien equipada"{
+    assert.that(deportes.estaBienEquipada())
+  }
+  test "cultura no esta bien equipada"{
+    assert.notThat(cultura.estaBienEquipada())
+  }
+
+  test "la capacidad total en color azul de deportes es de 7"{
+    assert.equals(7,deportes.capacidadTotalEnColor("azul")) 
+  }
+
+
+
+}
